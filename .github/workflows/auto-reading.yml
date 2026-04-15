@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
     inputs:
       target_duration:
-        description: "阅读时长（分钟，格式：10-20。留空时优先使用仓库 Secret TARGET_DURATION，否则默认 1-2）"
+        description: "阅读时长（分钟，格式：10-20。留空时优先使用仓库 Secret TARGET_DURATION，否则默认 30-40）"
         required: false
         default: "30-40"
         type: string
@@ -84,7 +84,7 @@ jobs:
           fi
 
           if [ -z "$target_duration" ]; then
-            target_duration="1-2"
+            target_duration="30-40"
           fi
 
           echo "TARGET_DURATION=$target_duration" >> "$GITHUB_ENV"
@@ -99,8 +99,8 @@ jobs:
 
           reading:
             mode: "${{ github.event.inputs.reading_mode || 'smart_random' }}"
-            # 目标阅读时长（分钟），支持区间随机，格式如："1" 或 "1-2"，当前为：1分钟
-            target_duration: "${{ github.event.inputs.target_duration || '30-40' }}"
+            # 目标阅读时长（分钟），统一使用上一步已解析的 TARGET_DURATION
+            target_duration: "${TARGET_DURATION}"
             reading_interval: "30-48"
             use_curl_data_first: true
             fallback_to_config: true
@@ -201,7 +201,7 @@ jobs:
           echo "开始自动阅读任务..."
           echo "当前时间: $(date)"
           echo "运行参数:"
-          echo "- 阅读时长: ${{ github.event.inputs.target_duration || '30-40' }}"
+          echo "- 阅读时长: ${TARGET_DURATION}"
           echo "- 阅读模式: ${{ github.event.inputs.reading_mode || 'smart_random' }}"
           echo "- 启用通知: ${{ github.event.inputs.notify_enabled != 'false' }}"
           echo "- 仅失败通知: ${{ github.event.inputs.notify_only_on_failure == 'true' }}"
