@@ -3558,16 +3558,17 @@ class WeReadSessionManager:
         # 记录用户身份信息（用于调试）
         logging.info(
             f"🔍 用户 {self.user_name} 身份验证: "
-            f"ps={_secret_marker(ps_value)}, pc={_secret_marker(pc_value)}, "
-            f"appId={_secret_marker(app_id)}"
+            f"ps={'present' if ps_value != 'N/A' else 'missing'}, "
+            f"pc={'present' if pc_value != 'N/A' else 'missing'}, "
+            f"appId={'present' if app_id != 'N/A' else 'missing'}"
         )
         
         # 验证关键身份字段是否存在
         if ps_value == 'N/A' or pc_value == 'N/A':
             logging.warning(
                 f"⚠️ 用户 {self.user_name} 缺少关键身份标识符: "
-                f"ps={_secret_marker(ps_value)}, "
-                f"pc={_secret_marker(pc_value)}"
+                f"ps={'missing' if ps_value == 'N/A' else 'present'}, "
+                f"pc={'missing' if pc_value == 'N/A' else 'present'}"
             )
         
         # 保存用户特定的身份标识符，确保在整个会话期间保持不变
@@ -3987,8 +3988,8 @@ class WeReadSessionManager:
                 self.data['appId'] = self.user_app_id
 
             logging.debug(
-                f"🔒 用户 {self.user_name} 身份确认: ps={_secret_marker(self.user_ps)}, "
-                f"pc={_secret_marker(self.user_pc)}, book={book_id[:10]}..., "
+                f"🔒 用户 {self.user_name} 身份确认: identity=bound, "
+                f"book={book_id[:10]}..., "
                 f"chapter={chapter_id[:10]}..."
             )
 
@@ -4071,9 +4072,8 @@ class WeReadSessionManager:
 
             self.cookies['wr_skey'] = new_skey
             logging.info(
-                "✅ Cookie刷新成功，ql=%s，新密钥: %s",
+                "✅ Cookie刷新成功，ql=%s，新密钥已更新",
                 ql_value,
-                _secret_marker(new_skey),
             )
             return True
 
