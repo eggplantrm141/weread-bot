@@ -153,52 +153,52 @@ jobs:
 
       - name: Run WeRead Bot
         env:
-        # Cookie刷新QL属性，根据不同用户的环境，可能需要设置为True或False来确保cookie刷新正常工作，默认值为false
-        HACK_COOKIE_REFRESH_QL: ${{ secrets.HACK_COOKIE_REFRESH_QL }}
-        # 多用户 cURL：在 WEREAD_CURL_STRING 中放置多段 curl，段与段之间至少插入两个空行
-        WEREAD_CURL_STRING: ${{ secrets.WEREAD_CURL_STRING }}
-        # 多用户并发控制，未设置默认 1（顺序执行）
-        MAX_CONCURRENT_USERS: ${{ secrets.MAX_CONCURRENT_USERS || 1 }}
-        # 单用户连续阅读失败上限，未设置时默认 5
-        MAX_CONSECUTIVE_FAILURES: ${{ secrets.MAX_CONSECUTIVE_FAILURES || 5 }}
-        # 通知相关环境变量
-        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        WXPUSHER_SPT: ${{ secrets.WXPUSHER_SPT }}
-        APPRISE_URL: ${{ secrets.APPRISE_URL }}
-        BARK_SERVER: ${{ secrets.BARK_SERVER }}
-        BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
-        BARK_SOUND: ${{ secrets.BARK_SOUND }}
-        NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
-        NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
-        FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
-        FEISHU_MSG_TYPE: ${{ secrets.FEISHU_MSG_TYPE }}
-        WEWORK_WEBHOOK_URL: ${{ secrets.WEWORK_WEBHOOK_URL }}
-        WEWORK_MSG_TYPE: ${{ secrets.WEWORK_MSG_TYPE }}
-        DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
-        DINGTALK_MSG_TYPE: ${{ secrets.DINGTALK_MSG_TYPE }}
-        GOTIFY_SERVER: ${{ secrets.GOTIFY_SERVER }}
-        GOTIFY_TOKEN: ${{ secrets.GOTIFY_TOKEN }}
-        GOTIFY_PRIORITY: ${{ secrets.GOTIFY_PRIORITY }}
-        GOTIFY_TITLE: ${{ secrets.GOTIFY_TITLE }}
-        # 代理设置（可选）
-        HTTP_PROXY: ${{ secrets.HTTP_PROXY }}
-        HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
-        SERVERCHAN3_UID: ${{ secrets.SERVERCHAN3_UID }}
-        SERVERCHAN3_SENDKEY: ${{ secrets.SERVERCHAN3_SENDKEY }}
-        SERVERCHAN3_TAGS: ${{ secrets.SERVERCHAN3_TAGS }}
-        SERVERCHAN3_SHORT: ${{ secrets.SERVERCHAN3_SHORT }}
-        PUSHDEER_PUSHKEY: ${{ secrets.PUSHDEER_PUSHKEY }}
-        PUSHDEER_TYPE: ${{ secrets.PUSHDEER_TYPE }}
-        NOTIFICATION_ONLY_ON_FAILURE: ${{ secrets.NOTIFICATION_ONLY_ON_FAILURE || github.event.inputs.notify_only_on_failure == 'true' || 'false' }}
-        HISTORY_ENABLED: ${{ secrets.HISTORY_ENABLED || github.event.inputs.history_enabled == 'true' || 'true' }}
-        HISTORY_FILE: ${{ secrets.HISTORY_FILE || 'logs/run-history.json' }}
-        HISTORY_MAX_ENTRIES: ${{ secrets.HISTORY_MAX_ENTRIES || github.event.inputs.history_max_entries || '50' }}
-        HISTORY_PERSIST_RUNTIME_ERROR: ${{ secrets.HISTORY_PERSIST_RUNTIME_ERROR || 'true' }}
-        # 其他环境变量
-        TZ: 'Asia/Shanghai'
+          # Cookie刷新QL属性，根据不同用户的环境，可能需要设置为True或False来确保cookie刷新正常工作，默认值为false
+          HACK_COOKIE_REFRESH_QL: ${{ secrets.HACK_COOKIE_REFRESH_QL }}
+          # 多用户 cURL：在 WEREAD_CURL_STRING 中放置多段 curl，段与段之间至少插入两个空行
+          WEREAD_CURL_STRING: ${{ secrets.WEREAD_CURL_STRING }}
+          # 多用户并发控制，未设置默认 1（顺序执行）
+          MAX_CONCURRENT_USERS: ${{ secrets.MAX_CONCURRENT_USERS || 1 }}
+          # 单用户连续阅读失败上限，未设置时默认 5
+          MAX_CONSECUTIVE_FAILURES: ${{ secrets.MAX_CONSECUTIVE_FAILURES || 5 }}
+          # 通知相关环境变量
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          WXPUSHER_SPT: ${{ secrets.WXPUSHER_SPT }}
+          APPRISE_URL: ${{ secrets.APPRISE_URL }}
+          BARK_SERVER: ${{ secrets.BARK_SERVER }}
+          BARK_DEVICE_KEY: ${{ secrets.BARK_DEVICE_KEY }}
+          BARK_SOUND: ${{ secrets.BARK_SOUND }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+          FEISHU_MSG_TYPE: ${{ secrets.FEISHU_MSG_TYPE }}
+          WEWORK_WEBHOOK_URL: ${{ secrets.WEWORK_WEBHOOK_URL }}
+          WEWORK_MSG_TYPE: ${{ secrets.WEWORK_MSG_TYPE }}
+          DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+          DINGTALK_MSG_TYPE: ${{ secrets.DINGTALK_MSG_TYPE }}
+          GOTIFY_SERVER: ${{ secrets.GOTIFY_SERVER }}
+          GOTIFY_TOKEN: ${{ secrets.GOTIFY_TOKEN }}
+          GOTIFY_PRIORITY: ${{ secrets.GOTIFY_PRIORITY }}
+          GOTIFY_TITLE: ${{ secrets.GOTIFY_TITLE }}
+          # 代理设置（可选）
+          HTTP_PROXY: ${{ secrets.HTTP_PROXY }}
+          HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
+          SERVERCHAN3_UID: ${{ secrets.SERVERCHAN3_UID }}
+          SERVERCHAN3_SENDKEY: ${{ secrets.SERVERCHAN3_SENDKEY }}
+          SERVERCHAN3_TAGS: ${{ secrets.SERVERCHAN3_TAGS }}
+          SERVERCHAN3_SHORT: ${{ secrets.SERVERCHAN3_SHORT }}
+          PUSHDEER_PUSHKEY: ${{ secrets.PUSHDEER_PUSHKEY }}
+          PUSHDEER_TYPE: ${{ secrets.PUSHDEER_TYPE }}
+          NOTIFICATION_ONLY_ON_FAILURE: ${{ secrets.NOTIFICATION_ONLY_ON_FAILURE || github.event.inputs.notify_only_on_failure == 'true' || 'false' }}
+          HISTORY_ENABLED: ${{ secrets.HISTORY_ENABLED || github.event.inputs.history_enabled == 'true' || 'true' }}
+          HISTORY_FILE: ${{ secrets.HISTORY_FILE || 'logs/run-history.json' }}
+          HISTORY_MAX_ENTRIES: ${{ secrets.HISTORY_MAX_ENTRIES || github.event.inputs.history_max_entries || '50' }}
+          HISTORY_PERSIST_RUNTIME_ERROR: ${{ secrets.HISTORY_PERSIST_RUNTIME_ERROR || 'true' }}
+          # 其他环境变量
+          TZ: 'Asia/Shanghai'
         run: |
           echo "开始自动阅读任务..."
           echo "当前时间: $(date)"
